@@ -2,28 +2,22 @@
 
 namespace Shapes
 {
-    /* abstract class Shape
-     {
-         protected double AreaOfShape;
-         protected double Perimeter;
-
-     }*/
-    public class Triangle //: Shape
+    public class Triangle
     {
-        double aSide, bSide, cSide;
-        double AreaOfShape;
+        double Aside, Bside, Cside;
+        double AreaOfTriangle;
         double Perimeter;
 
         public Triangle(double a, double b, double c)
         {
-            aSide = a;
-            bSide = b;
-            cSide = c;
+            Aside = a;
+            Bside = b;
+            Cside = c;
         }
 
         public double GetPerimeter()
         {
-            if (aSide <= 0 || bSide <= 0 || cSide <= 0)
+            if (Aside <= 0 || Bside <= 0 || Cside <= 0)
             {
                 Console.WriteLine("Стороны должны быть положительным числом");
                 //throw new Exception("Стороны должны быть положительным числом");
@@ -31,7 +25,7 @@ namespace Shapes
             }
 
             //сумма двух сторон треугольника всегда больше третьей стороны
-            if ((aSide + bSide) <= cSide || (aSide + cSide) <= bSide || (bSide + cSide) <= aSide)
+            if ((Aside + Bside) <= Cside || (Aside + Cside) <= Bside || (Bside + Cside) <= Aside)
             {
                 Console.WriteLine("Треугольника с такими сторонами не существует");
                 //throw new Exception("Треугольника с такими сторонами не существует");
@@ -39,23 +33,23 @@ namespace Shapes
             }
             
             
-            return Perimeter = aSide + bSide + cSide;
+            return Perimeter = Aside + Bside + Cside;
         }
         public double GetArea()
         {
             double halfPerimeter = GetPerimeter() / 2;
             if (Perimeter > 0)
             {
-                AreaOfShape = Math.Sqrt(halfPerimeter * (halfPerimeter - aSide) * (halfPerimeter - bSide) *
-                    (halfPerimeter - cSide));
+                AreaOfTriangle = Math.Sqrt(halfPerimeter * (halfPerimeter - Aside) * (halfPerimeter - Bside) *
+                    (halfPerimeter - Cside));
             }
             
-            return AreaOfShape;
+            return AreaOfTriangle;
         }
 
         public bool IfRightTriangle() // true - треугольник прямоугольный, false - нет
         {
-                if (Math.Pow(cSide, 2) == Math.Pow(aSide, 2) + Math.Pow(bSide, 2))
+                if (Math.Pow(Cside, 2) == Math.Pow(Aside, 2) + Math.Pow(Bside, 2))
                     return true;
                 else return false;
         }
@@ -67,21 +61,44 @@ namespace Shapes
         public void PrintArea()
         {
            if( GetArea()>0)
-            Console.WriteLine($"Площадь треугольника равна {AreaOfShape}");
+            Console.WriteLine($"Площадь треугольника равна {AreaOfTriangle}");
         }
         public void PrintIfRightTriangle()
         {
             if (IfRightTriangle())
-                Console.WriteLine($"Треугольник со сторонами {aSide} {bSide} {cSide} является прямоугольным");
+                Console.WriteLine($"Треугольник со сторонами {Aside} {Bside} {Cside} является прямоугольным");
             else if(Perimeter>0)
-                Console.WriteLine($"Треугольник со сторонами {aSide} {bSide} {cSide} НЕ является прямоугольным");
+                Console.WriteLine($"Треугольник со сторонами {Aside} {Bside} {Cside} НЕ является прямоугольным");
         }
         
     }
 
     public class Circle
     {
+        double Radius;
+        double AreaOfCircle;
 
+        public Circle(double r)
+        {
+            Radius = r;
+        }
+
+        public double GetAreaOfCircle()
+        {
+            if(Radius>0)
+            AreaOfCircle = Math.PI * Math.Pow(Radius, 2);
+            return AreaOfCircle;
+        }
+        public void PrintAreaOfCircle()
+        {
+            if (Radius > 0)
+            {
+                GetAreaOfCircle();
+                Console.WriteLine($"Площадь круга с радиусом {Radius} равна {AreaOfCircle}");
+            }
+            else
+                Console.WriteLine("Радиус должен быть положительным числом");
+        }
     }
 
 }
