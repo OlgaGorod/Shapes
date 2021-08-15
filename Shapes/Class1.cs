@@ -15,36 +15,55 @@ namespace Shapes
             Cside = c;
         }
 
+        public bool IfCorrectInput()
+        {
+            try
+            {
+                if (Aside <= 0 || Bside <= 0 || Cside <= 0)
+                    throw new Exception("Стороны должны быть положительным числом");
+
+                //сумма любых двух сторон должна быть больше третьей
+                if ((Aside + Bside) <= Cside || (Aside + Cside) <= Bside || (Bside + Cside) <= Aside)
+                {
+                    throw new Exception("Треугольника с такими сторонами не существует");
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Ошибка: {e.Message}");
+                return false;
+            }
+        }
+
         public double GetPerimeter()
         {
-            if (Aside <= 0 || Bside <= 0 || Cside <= 0)
-            {
-                Console.WriteLine("Стороны должны быть положительным числом");
-                //throw new Exception("Стороны должны быть положительным числом");
-                return 0;
-            }
-
-            //сумма двух сторон треугольника всегда больше третьей стороны
-            if ((Aside + Bside) <= Cside || (Aside + Cside) <= Bside || (Bside + Cside) <= Aside)
-            {
-                Console.WriteLine("Треугольника с такими сторонами не существует");
-                //throw new Exception("Треугольника с такими сторонами не существует");
-                return 0;
-            }
-            
-            
-            return Perimeter = Aside + Bside + Cside;
+            if (IfCorrectInput())
+                return Perimeter = Aside + Bside + Cside;
+            else return 0;
         }
+            
+            
+            
+        
         public double GetArea()
         {
             double halfPerimeter = GetPerimeter() / 2;
-            if (Perimeter > 0)
+
+            if (IfCorrectInput())
+
             {
+                //if (Perimeter > 0)
+                // {
                 AreaOfTriangle = Math.Sqrt(halfPerimeter * (halfPerimeter - Aside) * (halfPerimeter - Bside) *
                     (halfPerimeter - Cside));
+                // }
+                return AreaOfTriangle;
             }
+            else return 0;
             
-            return AreaOfTriangle;
+            
         }
 
         public bool IfRightTriangle() // true - треугольник прямоугольный, false - нет
@@ -55,16 +74,17 @@ namespace Shapes
         }
         public void PrintPerimeter()
         {
-            if (GetPerimeter()>0)
+            if (IfCorrectInput())
             Console.WriteLine($"Периметр треугольника равен {Perimeter}");
         }
         public void PrintArea()
         {
-           if( GetArea()>0)
+           if( IfCorrectInput())
             Console.WriteLine($"Площадь треугольника равна {AreaOfTriangle}");
         }
         public void PrintIfRightTriangle()
         {
+            if(IfCorrectInput())
             if (IfRightTriangle())
                 Console.WriteLine($"Треугольник со сторонами {Aside} {Bside} {Cside} является прямоугольным");
             else if(Perimeter>0)
@@ -91,13 +111,22 @@ namespace Shapes
         }
         public void PrintAreaOfCircle()
         {
-            if (Radius > 0)
+            try
             {
-                GetAreaOfCircle();
-                Console.WriteLine($"Площадь круга с радиусом {Radius} равна {AreaOfCircle}");
+                if (Radius > 0)
+                {
+                    GetAreaOfCircle();
+                    Console.WriteLine($"Площадь круга с радиусом {Radius} равна {AreaOfCircle}");
+                }
+                else
+                    throw new Exception("Радиус должен быть положительным числом");
             }
-            else
-                Console.WriteLine("Радиус должен быть положительным числом");
+            catch (Exception e)
+            {
+                Console.WriteLine($"Ошибка: {e.Message}") ;   
+            }
+            
+
         }
     }
 

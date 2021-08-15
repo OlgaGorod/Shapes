@@ -36,6 +36,7 @@ namespace GetShapesConsole
                 tr.PrintArea();
                 tr.PrintPerimeter();
                 tr.PrintIfRightTriangle();
+                //Вызывать лучше по отдельности, а то при возниконовении ошибки она выводится несколько раз
             }
 
 
