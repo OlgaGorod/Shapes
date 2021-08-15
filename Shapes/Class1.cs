@@ -15,7 +15,7 @@ namespace Shapes
             Cside = c;
         }
 
-        public bool IfCorrectInput()
+        private bool IfCorrectInput()
         {
             try
             {

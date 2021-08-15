@@ -52,17 +52,5 @@ namespace ShapeTests
             Circle c = new Circle(0);
             double actual = c.GetAreaOfCircle();
         }
-
-        [TestMethod]
-        public void FindCircleArea_fractionalNum_CircleArea()
-        {
-            //по идее, в этой проверке нет смысла, т.к. тип данных всё равно double
-            Circle c = new Circle(2.5);
-            double expected = 19.63;
-            double actual = Math.Round(c.GetAreaOfCircle(), 2);
-            Assert.AreEqual(expected, actual);
-
-
-        }
     }
 }
